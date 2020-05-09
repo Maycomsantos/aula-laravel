@@ -225,69 +225,42 @@ return [
             'label'       => 4,
             'label_color' => 'success',
         ],
-        ['header' => 'account_settings'],
+
         [
-            'text' => 'profile',
-            'url'  => 'admin/settings',
-            'icon' => 'fas fa-fw fa-user',
-        ],
-        [
-            'text' => 'change_password',
-            'url'  => 'admin/settings',
-            'icon' => 'fas fa-fw fa-lock',
-        ],
-        [
-            'text'    => 'multilevel',
-            'icon'    => 'fas fa-fw fa-share',
+            'text'    => 'Pagamentos',
+            'icon'    => 'far fa-money-bill-alt',
             'submenu' => [
-                [
-                    'text' => 'level_one',
-                    'url'  => '#',
+        [
+                    'text' => 'Todos os Pagamentos',
+                    'url'  => 'payment',
                 ],
                 [
-                    'text'    => 'level_one',
-                    'url'     => '#',
-                    'submenu' => [
-                        [
-                            'text' => 'level_two',
-                            'url'  => '#',
-                        ],
-                        [
-                            'text'    => 'level_two',
-                            'url'     => '#',
-                            'submenu' => [
-                                [
-                                    'text' => 'level_three',
-                                    'url'  => '#',
-                                ],
-                                [
-                                    'text' => 'level_three',
-                                    'url'  => '#',
-                                ],
-                            ],
-                        ],
+                    'text'    => 'Cadastrar Pagamentos',
+                    'url'     => 'payment/create',
+
                     ],
-                ],
-                [
-                    'text' => 'level_one',
-                    'url'  => '#',
+
+
                 ],
             ],
+
+            [
+                'text'    => 'Tarefas',
+                'icon'    => 'fas fa-tasks',
+                'submenu' => [
+                    [
+                        'text' => 'Todas as Tarefas',
+                        'url'  => '#',
+                    ],
+                    [
+                        'text' => 'Cadastrar Tarefas',
+                        'url'  => '#',
+                    ],
+                ]
+            ],
         ],
-        ['header' => 'labels'],
-        [
-            'text'       => 'important',
-            'icon_color' => 'red',
-        ],
-        [
-            'text'       => 'warning',
-            'icon_color' => 'yellow',
-        ],
-        [
-            'text'       => 'information',
-            'icon_color' => 'cyan',
-        ],
-    ],
+
+
 
     /*
     |--------------------------------------------------------------------------

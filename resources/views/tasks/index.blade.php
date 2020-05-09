@@ -11,7 +11,7 @@
             <div class="col-md-12">
                 <div class="page-header-title">
                     <h5 class="m-b-10">
-                        <a href="{{ route('payment.index') }}">
+                        <a href="{{ route('tasks.index') }}">
                         </a>
                     </h5>
                 </div>
@@ -36,7 +36,7 @@
         <div class="row">
 
             <div class="col-md-6">
-                 <form method="GET" action="{{ route('payment.index') }}">
+                 <form method="GET" action="{{ route('tasks.index') }}">
                     <div class="input-group mb-3">
                         <input class="form-control" name="search" value="{{ request('search') ?? '' }}" placeholder="Pesquisar por nome ou descrição..."/>
                         <div class="input-group-append">
@@ -51,7 +51,7 @@
 
 
                 <div class="col-md-6 text-right">
-                    <a href="{{ route('payment.create') }}" class="btn btn-info">
+                    <a href="{{ route('tasks.create') }}" class="btn btn-info">
                         <i class="fa fa-plus"></i> Novo Pagamento
                     </a>
                 </div>
@@ -65,39 +65,29 @@
                         <tr>
                             <th>Id</th>
                             <th>Nome</th>
-                            <th>Documento</th>
-                            <th>Emissão</th>
-                            <th>Data de Vencimento</th>
-                            <th>Custo</th>
-                            <th>Valor</th>
-                            <th>Rateios</th>
+                            <th>Detalhes</th>
                             <th>Criado em:</th>
                             <th class="text-center">Status</th>
                             <th class="text-center">Ações</th>
                         </tr>
                     </thead>
                     <tbody>
-                    @forelse ($payment as $pay)
+                    @forelse ($tasks as $task)
                         <tr>
-                            <td>{{ $pay->id }}</td>
-                            <td class="white-space">{{ $pay->name }}</td>
-                            <td>{{ $pay->document }}</td>
-                            <td>{{ $pay->emissao }}</td>
-                            <td>{{ $pay->dtvencimento }}</td>
-                            <td>{{ $pay->custo }}</td>
-                            <td>{{ money_db($pay->valor) }}</td>
-                            <td>{{ $pay->rateios }}</td>
-                            <td>{{ $pay->created_at }}</td>
-                            <td>{{ icon_status($pay->status) }}</td>
+                            <td>{{ $task->id }}</td>
+                            <td class="white-space">{{ $task->name }}</td>
+                            <td>{{ $task->details }}</td>
+                            <td>{{ $task->created_at }}</td>
+                            <td>{{ icon_status($task->status) }}</td>
                             <td class="text-center">
 
 
 
-                                <a class="btn btn-success" href="{{ route('payment.edit',$pay->id) }}">Editar
+                                <a class="btn btn-success" href="{{ route('tasks.edit',$task->id) }}">Editar
                                     <i class="fa fa-edit"></i>
                                 </a>
 
-                                <form action="{{ route('payment.destroy',$pay->id) }}" method="POST">
+                                <form action="{{ route('tasks.destroy',$task->id) }}" method="POST">
 
 
                             @csrf

@@ -6,5 +6,17 @@ use Illuminate\Database\Eloquent\Model;
 
 class Payment extends BaseModel
 {
-    protected $fillable = ['name','details','sales'];
+    protected $fillable =
+    [
+
+        'name' ,
+        'document',
+        'rateios',
+        'emissao',
+        'dtvencimento',
+        'custo',
+        'valor',
+        'status'
+    ];
+
 }

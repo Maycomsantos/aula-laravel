@@ -10,7 +10,7 @@ class PaymentController extends Controller
 {
     public function index()
     {
-        $payment = Payment::seach()
+        $payment = Payment::search()
             ->orderBy('name')
             ->paginate(20);
 
