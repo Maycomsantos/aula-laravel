@@ -23,14 +23,4 @@ trait HasDatabaseNotifications
     {
         return $this->notifications()->whereNotNull('read_at');
     }
-
-    /**
-     * Get the entity's unread notifications.
-     *
-     * @return \Illuminate\Database\Query\Builder
-     */
-    public function unreadNotifications()
-    {
-        return $this->notifications()->whereNull('read_at');
-    }
 }

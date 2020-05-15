@@ -24,6 +24,17 @@
       0 => 'Fruitcake\\Cors\\CorsServiceProvider',
     ),
   ),
+  'intervention/image' => 
+  array (
+    'providers' => 
+    array (
+      0 => 'Intervention\\Image\\ImageServiceProvider',
+    ),
+    'aliases' => 
+    array (
+      'Image' => 'Intervention\\Image\\Facades\\Image',
+    ),
+  ),
   'jeroennoten/laravel-adminlte' => 
   array (
     'providers' => 
@@ -36,6 +47,13 @@
     'providers' => 
     array (
       0 => 'Laravel\\Passport\\PassportServiceProvider',
+    ),
+  ),
+  'laravel/telescope' => 
+  array (
+    'providers' => 
+    array (
+      0 => 'Laravel\\Telescope\\TelescopeServiceProvider',
     ),
   ),
   'laravel/tinker' => 
@@ -59,6 +77,13 @@
       0 => 'Lucascudo\\LaravelPtBRLocalization\\LaravelPtBRLocalizationServiceProvider',
     ),
   ),
+  'mtolhuys/laravel-schematics' => 
+  array (
+    'providers' => 
+    array (
+      0 => 'Mtolhuys\\LaravelSchematics\\LaravelSchematicsServiceProvider',
+    ),
+  ),
   'nesbot/carbon' => 
   array (
     'providers' => 
@@ -78,6 +103,13 @@
     'providers' => 
     array (
       0 => 'Spatie\\Activitylog\\ActivitylogServiceProvider',
+    ),
+  ),
+  'spatie/laravel-medialibrary' => 
+  array (
+    'providers' => 
+    array (
+      0 => 'Spatie\\MediaLibrary\\MediaLibraryServiceProvider',
     ),
   ),
 );

@@ -17,7 +17,7 @@
                 </div>
                 <nav aria-label="breadcrumb" role="navigation">
                     <ol class="breadcrumb bg-transparent">
-                        <li class="breadcrumb-item active" aria-current="page">Pagamentos</li>
+                        <li class="breadcrumb-item active" aria-current="page">Tarefas</li>
                     </ol>
                 </nav>
             </div>
@@ -28,7 +28,7 @@
 <div class="card">
     <div class="card-header">
         <i class="fa fa-list"></i>
-            <h4>Listagem de Pagamentos</h4>
+            <h4>Listagem de Tarefas</h4>
         <hr class="m-b-5">
     </div>
 
@@ -47,8 +47,6 @@
                     </div>
                 </form>
             </div>
-
-
 
                 <div class="col-md-6 text-right">
                     <a href="{{ route('tasks.create') }}" class="btn btn-info">

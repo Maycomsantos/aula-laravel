@@ -82,7 +82,7 @@
         <div class="form-group row mb-0">
             <div class="col-md-9 offset-md-2">
                 <button type="submit" class="btn btn-success">
-                    <i class="fa fa-check"></i> Salvar Pagamento
+                    <i class="fa fa-check"></i> Salvar Tarefa
                 </button>
                 <a class="btn btn-warning" href="{{ route('tasks.index') }}">
                     <i class="fa fa-undo"></i> Voltar à listagem

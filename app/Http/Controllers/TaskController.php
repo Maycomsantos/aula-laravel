@@ -41,7 +41,9 @@ class TaskController extends Controller
 
     public function edit(Task $task)
     {
-        return view('tasks.form');
+        return view('tasks.form' , [
+            'users' => User::all(),
+        ]);
     }
 
     public function update(TaskRequest $request, Task $task)
@@ -53,9 +55,9 @@ class TaskController extends Controller
             ->withSuccess('Tarefa atualizada com sucesso');
     }
 
-    public function destroy(Task $task)
+    public function destroy(Task $task , TaskRequest $request)
     {
-        $task->delete($request->all());
+        $task->destroy($request->all());
 
         return view('tasks')
             ->withSuccess('Tarefa deletada com sucesso');

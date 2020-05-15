@@ -250,7 +250,7 @@ return [
                 'submenu' => [
                     [
                         'text' => 'Todas as Tarefas',
-                        'url'  => '#',
+                        'url'  => 'tasks',
                     ],
                     [
                         'text' => 'Cadastrar Tarefas',

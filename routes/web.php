@@ -21,3 +21,4 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 Route::resource('payment' , 'PaymentController');
 Route::resource('tasks' , 'TaskController');
+Route::resource('shop' , 'ShopController');
