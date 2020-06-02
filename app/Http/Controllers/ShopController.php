@@ -38,11 +38,9 @@ class ShopController extends Controller
     public function store(ShopRequest $request)
     {
         Shop::create($request->all());
-        
+
         return redirect('shop')
             ->withSuccess('Produto cadastrado com sucesso');
-
-
 
     }
 

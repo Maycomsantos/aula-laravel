@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\Http\Requests\TaskRequest;
 use App\Models\Task;
 use App\User;
+use App\Exports\TarefasExport;
+use Maatwebsite\Excel\Facades\Excel;
 
 class TaskController extends Controller
 {
@@ -13,7 +15,7 @@ class TaskController extends Controller
     public function index()
     {
         $tasks = Task::search()
-            ->orderBy('name')
+            ->orderBy('id')
             ->paginate();
 
         return view('tasks.index', compact('tasks'));
@@ -42,7 +44,8 @@ class TaskController extends Controller
     public function edit(Task $task)
     {
         return view('tasks.form' , [
-            'users' => User::all(),
+            'tasks' =>  $task,
+            'users' =>  User::all(),
         ]);
     }
 
@@ -62,4 +65,10 @@ class TaskController extends Controller
         return view('tasks')
             ->withSuccess('Tarefa deletada com sucesso');
     }
-}
+    public function export()
+    {
+        return Excel::download(new TarefasExport, 'tarefas.xlsx');
+    }
+
+
+   }

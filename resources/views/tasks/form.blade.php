@@ -10,7 +10,7 @@
 
     <div class="card-body">
         @isset($tasks)
-            <form method="POST" action="{{ route('tasks.update', $pay->id) }}">
+            <form method="POST" action="{{ route('tasks.update', $tasks->id) }}">
                 @method('PUT')
         @else
             <form method="POST" action="{{ route('tasks.store') }}">
