@@ -19,11 +19,14 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-Route::resource('payment' , 'PaymentController');
-Route::resource('tasks' , 'TaskController');
-Route::resource('shop' , 'ShopController');
+Route::resources([
+    'payment'   => 'PaymentController',
+    'tasks'     => 'TaskController',
+    'shop'      => 'ShopController',
+    'imports'   => 'ImportsController',
+    'aula'      => 'AulaController'
+]);
 
-Route::resource('imports', 'ImportsController');
 Route::post('import_tasks', 'ImportsController@import_tasks');
 
 Route::group(['prefix' => 'exports'], function () {

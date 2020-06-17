@@ -1,4 +1,11 @@
 <?php return array (
+  'beyondcode/laravel-self-diagnosis' => 
+  array (
+    'providers' => 
+    array (
+      0 => 'BeyondCode\\SelfDiagnosis\\SelfDiagnosisServiceProvider',
+    ),
+  ),
   'facade/ignition' => 
   array (
     'providers' => 

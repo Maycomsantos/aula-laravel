@@ -8,7 +8,6 @@ class Payment extends BaseModel
 {
     protected $fillable =
     [
-
         'name' ,
         'document',
         'rateios',
