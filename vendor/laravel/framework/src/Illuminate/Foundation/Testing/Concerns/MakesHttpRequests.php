@@ -81,6 +81,18 @@ trait MakesHttpRequests
     }
 
     /**
+     * Add an authorization token for the request.
+     *
+     * @param  string  $token
+     * @param  string  $type
+     * @return $this
+     */
+    public function withToken(string $token, string $type = 'Bearer')
+    {
+        return $this->withHeader('Authorization', $type.' '.$token);
+    }
+
+    /**
      * Flush all the configured headers.
      *
      * @return $this
@@ -387,7 +399,7 @@ trait MakesHttpRequests
     }
 
     /**
-     * Visit the given URI with a OPTIONS request.
+     * Visit the given URI with an OPTIONS request.
      *
      * @param  string  $uri
      * @param  array  $data
@@ -403,7 +415,7 @@ trait MakesHttpRequests
     }
 
     /**
-     * Visit the given URI with a OPTIONS request, expecting a JSON response.
+     * Visit the given URI with an OPTIONS request, expecting a JSON response.
      *
      * @param  string  $uri
      * @param  array  $data

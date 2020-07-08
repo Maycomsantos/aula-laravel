@@ -10,8 +10,9 @@
  */
 namespace Carbon\Traits;
 
+use BadMethodCallException;
 use Carbon\CarbonInterface;
-use Carbon\Exceptions\BadUnitException;
+use Carbon\Exceptions\BadComparisonUnitException;
 use InvalidArgumentException;
 
 /**
@@ -22,11 +23,11 @@ use InvalidArgumentException;
  *
  * Depends on the following methods:
  *
- * @method CarbonInterface        resolveCarbon($date)
- * @method CarbonInterface        copy()
- * @method CarbonInterface        nowWithSameTz()
- * @method static CarbonInterface yesterday($timezone = null)
- * @method static CarbonInterface tomorrow($timezone = null)
+ * @method static        resolveCarbon($date)
+ * @method static        copy()
+ * @method static        nowWithSameTz()
+ * @method static static yesterday($timezone = null)
+ * @method static static tomorrow($timezone = null)
  */
 trait Comparison
 {
@@ -569,8 +570,6 @@ trait Comparison
      * @param string                                        $format date formats to compare.
      * @param \Carbon\Carbon|\DateTimeInterface|string|null $date   instance to compare with or null to use current day.
      *
-     * @throws \InvalidArgumentException
-     *
      * @return bool
      */
     public function isSameAs($format, $date = null)
@@ -590,7 +589,7 @@ trait Comparison
      * @param string                                 $unit singular unit string
      * @param \Carbon\Carbon|\DateTimeInterface|null $date instance to compare with or null to use current day.
      *
-     * @throws \InvalidArgumentException
+     * @throws BadComparisonUnitException
      *
      * @return bool
      */
@@ -621,7 +620,7 @@ trait Comparison
             }
 
             if ($this->localStrictModeEnabled ?? static::isStrictModeEnabled()) {
-                throw new BadUnitException($unit);
+                throw new BadComparisonUnitException($unit);
             }
 
             return false;
@@ -641,7 +640,7 @@ trait Comparison
      *
      * @param string $unit The unit to test.
      *
-     * @throws \BadMethodCallException
+     * @throws BadMethodCallException
      *
      * @return bool
      */

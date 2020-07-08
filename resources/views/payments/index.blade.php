@@ -27,7 +27,7 @@
 <div class="card">
     <div class="card-header">
         <i class="fa fa-list"></i>
-            <h4>Listagem de Pagamentos</h4>
+        <h4>Listagem de Pagamentos</h4>
         <hr class="m-b-5">
     </div>
 
@@ -35,11 +35,12 @@
         <div class="row">
 
             <div class="col-md-6">
-                 <form method="GET" action="{{ route('payment.index') }}">
+                <form method="GET" action="{{ route('payment.index') }}">
                     <div class="input-group mb-3">
-                        <input class="form-control" name="search" value="{{ request('search') ?? '' }}" placeholder="Pesquisar por nome ou descrição..."/>
+                        <input class="form-control" name="search" value="{{ request('search') ?? '' }}"
+                            placeholder="Pesquisar por nome ou descrição..." />
                         <div class="input-group-append">
-                            <button class="btn btn-info" type="submit" >
+                            <button class="btn btn-info" type="submit">
                                 <i class="fa fa-search"></i> Buscar
                             </button>
                         </div>
@@ -49,11 +50,11 @@
 
 
 
-                <div class="col-md-6 text-right">
-                    <a href="{{ route('payment.create') }}" class="btn btn-info">
-                        <i class="fa fa-plus"></i> Novo Pagamento
-                    </a>
-                </div>
+            <div class="col-md-6 text-right">
+                <a href="{{ route('payment.create') }}" class="btn btn-info">
+                    <i class="fa fa-plus"></i> Novo Pagamento
+                </a>
+            </div>
 
 
             <hr>
@@ -76,7 +77,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                    @forelse ($payment as $pay)
+                        @forelse ($payment as $pay)
                         <tr>
                             <td>{{ $pay->id }}</td>
                             <td class="white-space">{{ $pay->name }}</td>
@@ -99,15 +100,15 @@
                                 <form action="{{ route('payment.destroy',$pay->id) }}" method="POST">
 
 
-                            @csrf
-                            @method('DELETE')
+                                    @csrf
+                                    @method('DELETE')
 
-                            <button type="submit" class="btn btn-danger">Deletar</button>
-                            </form>
+                                    <button type="submit" class="btn btn-danger">Deletar</button>
+                                </form>
 
                             </td>
                         </tr>
-                    @empty
+                        @empty
                         <tr>
                             <td colspan="8">
                                 <div class="alert alert-danger text-center">
@@ -116,12 +117,11 @@
                                 </div>
                             </td>
                         </tr>
-                    @endforelse
+                        @endforelse
                     </tbody>
                 </table>
 
 
             </div>
 
-@endsection
-
+            @endsection

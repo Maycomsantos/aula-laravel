@@ -79,6 +79,7 @@
             <div class="form-group row">
                 <label class="col-sm-2 col-form-label">Data de Vencimento *</label>
                 <div class="col-md-9">
+                
                     <input type="date" id="dtvencimento" name="dtvencimento" class="form-control @error('dtvencimento') @errror is-invalid @enderror" value="{{ old('dtvencimento', $payment->dtvencimento ?? null) }}" onkeyup="toUpper(this)" placeholder="Data de Emissão" autofocus>
 
                     @error('dtvencimento')

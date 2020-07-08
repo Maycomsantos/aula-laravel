@@ -4,163 +4,175 @@ namespace JeroenNoten\LaravelAdminLte;
 
 use Illuminate\Contracts\Container\Container;
 use Illuminate\Contracts\Events\Dispatcher;
-use Illuminate\Support\Facades\View;
 use JeroenNoten\LaravelAdminLte\Events\BuildingMenu;
+use JeroenNoten\LaravelAdminLte\Helpers\LayoutHelper;
+use JeroenNoten\LaravelAdminLte\Helpers\MenuItemHelper;
 use JeroenNoten\LaravelAdminLte\Menu\Builder;
 
 class AdminLte
 {
+    /**
+     * The array of menu items.
+     *
+     * @var array
+     */
     protected $menu;
 
+    /**
+     * The array of menu filters. These filters will apply on each one of the
+     * menu items in order to transforms they in some way.
+     *
+     * @var array
+     */
     protected $filters;
 
+    /**
+     * The events dispatcher.
+     *
+     * @var Dispatcher
+     */
     protected $events;
 
+    /**
+     * The application service container.
+     *
+     * @var Container
+     */
     protected $container;
 
-    public function __construct(
-        array $filters,
-        Dispatcher $events,
-        Container $container
-    ) {
+    /**
+     * Map between a valid menu filter token and his respective filter method.
+     * These filters are intended to get a specific set of menu items.
+     *
+     * @var array
+     */
+    protected $menuFilterMap;
+
+    /**
+     * Constructor.
+     *
+     * @param array $filters
+     * @param Dispatcher $events
+     * @param Container $container
+     */
+    public function __construct(array $filters, Dispatcher $events, Container $container)
+    {
         $this->filters = $filters;
         $this->events = $events;
         $this->container = $container;
+
+        // Fill the map of filters methods.
+
+        $this->menuFilterMap = [
+            'sidebar'      => [$this, 'sidebarFilter'],
+            'navbar-left'  => [$this, 'navbarLeftFilter'],
+            'navbar-right' => [$this, 'navbarRightFilter'],
+            'navbar-user'  => [$this, 'navbarUserMenuFilter'],
+        ];
     }
 
-    public function menu()
+    /**
+     * Get all the menu items, or a specific set of these.
+     *
+     * @param string $filterToken Token representing a subset of the menu items
+     * @return array A set of menu items
+     */
+    public function menu($filterToken = null)
     {
-        if (! $this->menu) {
+        if (empty($this->menu)) {
             $this->menu = $this->buildMenu();
         }
+
+        // Check for filter token.
+
+        if (isset($this->menuFilterMap[$filterToken])) {
+            return array_filter(
+                $this->menu,
+                $this->menuFilterMap[$filterToken]
+            );
+        }
+
+        // No filter token provided, return the complete menu.
 
         return $this->menu;
     }
 
-    public function getBodyClasses()
-    {
-        $body_classes = [];
-        $screen_sizes = ['xs', 'sm', 'md', 'lg', 'xl'];
-
-        // Add classes related to the "sidebar_mini" configuration.
-
-        if (config('adminlte.sidebar_mini', true) === true) {
-            $body_classes[] = 'sidebar-mini';
-        } elseif (config('adminlte.sidebar_mini', true) == 'md') {
-            $body_classes[] = 'sidebar-mini sidebar-mini-md';
-        }
-
-        // Add classes related to the "layout_topnav" configuration.
-
-        if (config('adminlte.layout_topnav') || View::getSection('layout_topnav')) {
-            $body_classes[] = 'layout-top-nav';
-        }
-
-        // Add classes related to the "layout_boxed" configuration.
-
-        if (config('adminlte.layout_boxed')) {
-            $body_classes[] = 'layout-boxed';
-        }
-
-        // Add classes related to the "sidebar_collapse" configuration.
-
-        if (config('adminlte.sidebar_collapse') || View::getSection('sidebar_collapse')) {
-            $body_classes[] = 'sidebar-collapse';
-        }
-
-        // Add classes related to the "right_sidebar" configuration.
-
-        if (config('adminlte.right_sidebar') && config('adminlte.right_sidebar_push')) {
-            $body_classes[] = 'control-sidebar-push';
-        }
-
-        // Add classes related to the fixed layout configuration, these are not
-        // compatible with "layout_topnav".
-
-        if (! config('adminlte.layout_topnav') && ! View::getSection('layout_topnav')) {
-            // Check for fixed sidebar configuration.
-
-            if (config('adminlte.layout_fixed_sidebar')) {
-                $body_classes[] = 'layout-fixed';
-            }
-
-            // Check for fixed navbar configuration.
-
-            $fixed_navbar_cfg = config('adminlte.layout_fixed_navbar');
-
-            if ($fixed_navbar_cfg === true) {
-                $body_classes[] = 'layout-navbar-fixed';
-            } elseif (is_array($fixed_navbar_cfg)) {
-                foreach ($fixed_navbar_cfg as $size => $enabled) {
-                    if (in_array($size, $screen_sizes)) {
-                        $size = $size == 'xs' ? '' : '-'.$size;
-                        $body_classes[] = $enabled == true ?
-                            'layout'.$size.'-navbar-fixed' :
-                            'layout'.$size.'-navbar-not-fixed';
-                    }
-                }
-            }
-
-            // Check for fixed footer configuration.
-
-            $fixed_footer_cfg = config('adminlte.layout_fixed_footer');
-
-            if ($fixed_footer_cfg === true) {
-                $body_classes[] = 'layout-footer-fixed';
-            } elseif (is_array($fixed_footer_cfg)) {
-                foreach ($fixed_footer_cfg as $size => $enabled) {
-                    if (in_array($size, $screen_sizes)) {
-                        $size = $size == 'xs' ? '' : '-'.$size;
-                        $body_classes[] = $enabled == true ?
-                            'layout'.$size.'-footer-fixed' :
-                            'layout'.$size.'-footer-not-fixed';
-                    }
-                }
-            }
-        }
-
-        $body_classes[] = config('adminlte.classes_body', '');
-
-        // Add classes related to the "classes_body" configuration and return the
-        // set of configured classes for the body tag.
-
-        return trim(implode(' ', $body_classes));
-    }
-
-    public function getBodyData()
-    {
-        $body_data = [];
-
-        // Add data related to the "sidebar_scrollbar_theme" configuration.
-
-        $sb_theme_cfg = config('adminlte.sidebar_scrollbar_theme', 'os-theme-light');
-
-        if ($sb_theme_cfg != 'os-theme-light') {
-            $body_data[] = 'data-scrollbar-theme='.$sb_theme_cfg;
-        }
-
-        // Add data related to the "sidebar_scrollbar_auto_hide" configuration.
-
-        $sb_auto_hide = config('adminlte.sidebar_scrollbar_auto_hide', 'l');
-
-        if ($sb_auto_hide != 'l') {
-            $body_data[] = 'data-scrollbar-auto-hide='.$sb_auto_hide;
-        }
-
-        return trim(implode(' ', $body_data));
-    }
-
+    /**
+     * Build the menu.
+     *
+     * @return array The set of menu items
+     */
     protected function buildMenu()
     {
+        // Create the menu builder instance.
+
         $builder = new Builder($this->buildFilters());
 
+        // Dispatch the BuildingMenu event. Listeners of this event will fill
+        // the menu.
+
         $this->events->dispatch(new BuildingMenu($builder));
+
+        // Return the set of menu items.
 
         return $builder->menu;
     }
 
+    /**
+     * Build the menu filters.
+     *
+     * @return array The set of filters that will apply on each menu item
+     */
     protected function buildFilters()
     {
         return array_map([$this->container, 'make'], $this->filters);
+    }
+
+    /**
+     * Filter method used to get the sidebar menu items.
+     *
+     * @param mixed $item A menu item
+     * @return bool
+     */
+    private function sidebarFilter($item)
+    {
+        return MenuItemHelper::isSidebarItem($item);
+    }
+
+    /**
+     * Filter method used to get the top navbar left menu items.
+     *
+     * @param mixed $item A menu item
+     * @return bool
+     */
+    private function navbarLeftFilter($item)
+    {
+        if (LayoutHelper::isLayoutTopnavEnabled() && MenuItemHelper::isSidebarItem($item)) {
+            return MenuItemHelper::isValidNavbarItem($item);
+        }
+
+        return MenuItemHelper::isNavbarLeftItem($item);
+    }
+
+    /**
+     * Filter method used to get the top navbar right menu items.
+     *
+     * @param mixed $item A menu item
+     * @return bool
+     */
+    private function navbarRightFilter($item)
+    {
+        return MenuItemHelper::isNavbarRightItem($item);
+    }
+
+    /**
+     * Filter method used to get the navbar user menu items.
+     *
+     * @param mixed $item A menu item
+     * @return bool
+     */
+    private function navbarUserMenuFilter($item)
+    {
+        return MenuItemHelper::isNavbarUserItem($item);
     }
 }

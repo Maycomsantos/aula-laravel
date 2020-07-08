@@ -15079,3 +15079,60 @@ Did you mean one of these?
 #17 C:\\xampp\\htdocs\\Aula\\artisan(37): Illuminate\\Foundation\\Console\\Kernel->handle(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
 #18 {main}
 "} 
+[2020-06-27 02:46:58] local.ERROR: SQLSTATE[HY000] [2002] Nenhuma conexão pôde ser feita porque a máquina de destino as recusou ativamente.
+ (SQL: insert into `telescope_entries` (`batch_id`, `content`, `created_at`, `family_hash`, `type`, `uuid`) values (90e72f12-b5cf-451b-a9f0-3db6d611614c, {"name":"welcome","path":"\\resources\\views\/welcome.blade.php","data":[],"hostname":"DESKTOP-67ET2J4"}, 2020-06-27 02:46:55, ?, view, 90e72f11-9e38-4140-a2c2-218dde13cef2), (90e72f12-b5cf-451b-a9f0-3db6d611614c, {"uri":"\/","method":"GET","controller_action":"Closure","middleware":["web"],"headers":{"host":"127.0.0.1:8000","connection":"keep-alive","upgrade-insecure-requests":"1","user-agent":"Mozilla\/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/81.0.4044.138 Safari\/537.36 OPR\/68.0.3618.173","accept":"text\/html,application\/xhtml+xml,application\/xml;q=0.9,image\/webp,image\/apng,*\/*;q=0.8,application\/signed-exchange;v=b3;q=0.9","sec-fetch-site":"none","sec-fetch-mode":"navigate","sec-fetch-dest":"document","accept-encoding":"gzip, deflate, br","accept-language":"pt-BR,pt;q=0.9,en-US;q=0.8,en;q=0.7"},"payload":[],"session":{"_token":"IO2qecZAeiSZIlX4ZLH3RktXs5rCv9brHhVInys6","_previous":{"url":"http:\/\/127.0.0.1:8000"},"_flash":{"old":[],"new":[]}},"response_status":200,"response":{"view":"C:\\xampp\\htdocs\\Aula\\resources\\views\/welcome.blade.php","data":[]},"duration":6418,"memory":18,"hostname":"DESKTOP-67ET2J4"}, 2020-06-27 02:46:56, ?, request, 90e72f12-b551-46fa-891a-b2d1ecd8513e)) {"exception":"[object] (Illuminate\\Database\\QueryException(code: 2002): SQLSTATE[HY000] [2002] Nenhuma conexão pôde ser feita porque a máquina de destino as recusou ativamente.
+ (SQL: insert into `telescope_entries` (`batch_id`, `content`, `created_at`, `family_hash`, `type`, `uuid`) values (90e72f12-b5cf-451b-a9f0-3db6d611614c, {\"name\":\"welcome\",\"path\":\"\\\esources\\\\views\\/welcome.blade.php\",\"data\":[],\"hostname\":\"DESKTOP-67ET2J4\"}, 2020-06-27 02:46:55, ?, view, 90e72f11-9e38-4140-a2c2-218dde13cef2), (90e72f12-b5cf-451b-a9f0-3db6d611614c, {\"uri\":\"\\/\",\"method\":\"GET\",\"controller_action\":\"Closure\",\"middleware\":[\"web\"],\"headers\":{\"host\":\"127.0.0.1:8000\",\"connection\":\"keep-alive\",\"upgrade-insecure-requests\":\"1\",\"user-agent\":\"Mozilla\\/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit\\/537.36 (KHTML, like Gecko) Chrome\\/81.0.4044.138 Safari\\/537.36 OPR\\/68.0.3618.173\",\"accept\":\"text\\/html,application\\/xhtml+xml,application\\/xml;q=0.9,image\\/webp,image\\/apng,*\\/*;q=0.8,application\\/signed-exchange;v=b3;q=0.9\",\"sec-fetch-site\":\"none\",\"sec-fetch-mode\":\"navigate\",\"sec-fetch-dest\":\"document\",\"accept-encoding\":\"gzip, deflate, br\",\"accept-language\":\"pt-BR,pt;q=0.9,en-US;q=0.8,en;q=0.7\"},\"payload\":[],\"session\":{\"_token\":\"IO2qecZAeiSZIlX4ZLH3RktXs5rCv9brHhVInys6\",\"_previous\":{\"url\":\"http:\\/\\/127.0.0.1:8000\"},\"_flash\":{\"old\":[],\"new\":[]}},\"response_status\":200,\"response\":{\"view\":\"C:\\\\xampp\\\\htdocs\\\\Aula\\\esources\\\\views\\/welcome.blade.php\",\"data\":[]},\"duration\":6418,\"memory\":18,\"hostname\":\"DESKTOP-67ET2J4\"}, 2020-06-27 02:46:56, ?, request, 90e72f12-b551-46fa-891a-b2d1ecd8513e)) at C:\\xampp\\htdocs\\Aula\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Connection.php:671)
+[stacktrace]
+#0 C:\\xampp\\htdocs\\Aula\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Connection.php(631): Illuminate\\Database\\Connection->runQueryCallback('insert into `te...', Array, Object(Closure))
+#1 C:\\xampp\\htdocs\\Aula\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Connection.php(465): Illuminate\\Database\\Connection->run('insert into `te...', Array, Object(Closure))
+#2 C:\\xampp\\htdocs\\Aula\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Connection.php(417): Illuminate\\Database\\Connection->statement('insert into `te...', Array)
+#3 C:\\xampp\\htdocs\\Aula\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Query\\Builder.php(2699): Illuminate\\Database\\Connection->insert('insert into `te...', Array)
+#4 C:\\xampp\\htdocs\\Aula\\vendor\\laravel\\telescope\\src\\Storage\\DatabaseEntriesRepository.php(148): Illuminate\\Database\\Query\\Builder->insert(Array)
+#5 C:\\xampp\\htdocs\\Aula\\vendor\\laravel\\framework\\src\\Illuminate\\Support\\Traits\\EnumeratesValues.php(202): Laravel\\Telescope\\Storage\\DatabaseEntriesRepository->Laravel\\Telescope\\Storage\\{closure}(Object(Illuminate\\Support\\Collection), 0)
+#6 C:\\xampp\\htdocs\\Aula\\vendor\\laravel\\telescope\\src\\Storage\\DatabaseEntriesRepository.php(149): Illuminate\\Support\\Collection->each(Object(Closure))
+#7 C:\\xampp\\htdocs\\Aula\\vendor\\laravel\\telescope\\src\\Telescope.php(569): Laravel\\Telescope\\Storage\\DatabaseEntriesRepository->store(Object(Illuminate\\Support\\Collection))
+#8 C:\\xampp\\htdocs\\Aula\\vendor\\laravel\\telescope\\src\\ListensForStorageOpportunities.php(44): Laravel\\Telescope\\Telescope::store(Object(Laravel\\Telescope\\Storage\\DatabaseEntriesRepository))
+#9 [internal function]: Laravel\\Telescope\\Telescope::Laravel\\Telescope\\{closure}()
+#10 C:\\xampp\\htdocs\\Aula\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\BoundMethod.php(33): call_user_func_array(Object(Closure), Array)
+#11 C:\\xampp\\htdocs\\Aula\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\Util.php(36): Illuminate\\Container\\BoundMethod::Illuminate\\Container\\{closure}()
+#12 C:\\xampp\\htdocs\\Aula\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\BoundMethod.php(79): Illuminate\\Container\\Util::unwrapIfClosure(Object(Closure))
+#13 C:\\xampp\\htdocs\\Aula\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\BoundMethod.php(35): Illuminate\\Container\\BoundMethod::callBoundMethod(Object(Illuminate\\Foundation\\Application), Object(Closure), Object(Closure))
+#14 C:\\xampp\\htdocs\\Aula\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\Container.php(592): Illuminate\\Container\\BoundMethod::call(Object(Illuminate\\Foundation\\Application), Object(Closure), Array, NULL)
+#15 C:\\xampp\\htdocs\\Aula\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Application.php(1091): Illuminate\\Container\\Container->call(Object(Closure))
+#16 C:\\xampp\\htdocs\\Aula\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Kernel.php(180): Illuminate\\Foundation\\Application->terminate()
+#17 C:\\xampp\\htdocs\\Aula\\public\\index.php(60): Illuminate\\Foundation\\Http\\Kernel->terminate(Object(Illuminate\\Http\\Request), Object(Illuminate\\Http\\Response))
+#18 C:\\xampp\\htdocs\\Aula\\server.php(21): require_once('C:\\\\xampp\\\\htdocs...')
+#19 {main}
+
+[previous exception] [object] (PDOException(code: 2002): SQLSTATE[HY000] [2002] Nenhuma conexão pôde ser feita porque a máquina de destino as recusou ativamente.
+ at C:\\xampp\\htdocs\\Aula\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Connectors\\Connector.php:70)
+[stacktrace]
+#0 C:\\xampp\\htdocs\\Aula\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Connectors\\Connector.php(70): PDO->__construct('mysql:host=127....', 'root', '', Array)
+#1 C:\\xampp\\htdocs\\Aula\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Connectors\\Connector.php(46): Illuminate\\Database\\Connectors\\Connector->createPdoConnection('mysql:host=127....', 'root', '', Array)
+#2 C:\\xampp\\htdocs\\Aula\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Connectors\\MySqlConnector.php(24): Illuminate\\Database\\Connectors\\Connector->createConnection('mysql:host=127....', Array, Array)
+#3 C:\\xampp\\htdocs\\Aula\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Connectors\\ConnectionFactory.php(182): Illuminate\\Database\\Connectors\\MySqlConnector->connect(Array)
+#4 [internal function]: Illuminate\\Database\\Connectors\\ConnectionFactory->Illuminate\\Database\\Connectors\\{closure}()
+#5 C:\\xampp\\htdocs\\Aula\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Connection.php(926): call_user_func(Object(Closure))
+#6 C:\\xampp\\htdocs\\Aula\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Connection.php(458): Illuminate\\Database\\Connection->getPdo()
+#7 C:\\xampp\\htdocs\\Aula\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Connection.php(664): Illuminate\\Database\\Connection->Illuminate\\Database\\{closure}('insert into `te...', Array)
+#8 C:\\xampp\\htdocs\\Aula\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Connection.php(631): Illuminate\\Database\\Connection->runQueryCallback('insert into `te...', Array, Object(Closure))
+#9 C:\\xampp\\htdocs\\Aula\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Connection.php(465): Illuminate\\Database\\Connection->run('insert into `te...', Array, Object(Closure))
+#10 C:\\xampp\\htdocs\\Aula\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Connection.php(417): Illuminate\\Database\\Connection->statement('insert into `te...', Array)
+#11 C:\\xampp\\htdocs\\Aula\\vendor\\laravel\\framework\\src\\Illuminate\\Database\\Query\\Builder.php(2699): Illuminate\\Database\\Connection->insert('insert into `te...', Array)
+#12 C:\\xampp\\htdocs\\Aula\\vendor\\laravel\\telescope\\src\\Storage\\DatabaseEntriesRepository.php(148): Illuminate\\Database\\Query\\Builder->insert(Array)
+#13 C:\\xampp\\htdocs\\Aula\\vendor\\laravel\\framework\\src\\Illuminate\\Support\\Traits\\EnumeratesValues.php(202): Laravel\\Telescope\\Storage\\DatabaseEntriesRepository->Laravel\\Telescope\\Storage\\{closure}(Object(Illuminate\\Support\\Collection), 0)
+#14 C:\\xampp\\htdocs\\Aula\\vendor\\laravel\\telescope\\src\\Storage\\DatabaseEntriesRepository.php(149): Illuminate\\Support\\Collection->each(Object(Closure))
+#15 C:\\xampp\\htdocs\\Aula\\vendor\\laravel\\telescope\\src\\Telescope.php(569): Laravel\\Telescope\\Storage\\DatabaseEntriesRepository->store(Object(Illuminate\\Support\\Collection))
+#16 C:\\xampp\\htdocs\\Aula\\vendor\\laravel\\telescope\\src\\ListensForStorageOpportunities.php(44): Laravel\\Telescope\\Telescope::store(Object(Laravel\\Telescope\\Storage\\DatabaseEntriesRepository))
+#17 [internal function]: Laravel\\Telescope\\Telescope::Laravel\\Telescope\\{closure}()
+#18 C:\\xampp\\htdocs\\Aula\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\BoundMethod.php(33): call_user_func_array(Object(Closure), Array)
+#19 C:\\xampp\\htdocs\\Aula\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\Util.php(36): Illuminate\\Container\\BoundMethod::Illuminate\\Container\\{closure}()
+#20 C:\\xampp\\htdocs\\Aula\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\BoundMethod.php(79): Illuminate\\Container\\Util::unwrapIfClosure(Object(Closure))
+#21 C:\\xampp\\htdocs\\Aula\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\BoundMethod.php(35): Illuminate\\Container\\BoundMethod::callBoundMethod(Object(Illuminate\\Foundation\\Application), Object(Closure), Object(Closure))
+#22 C:\\xampp\\htdocs\\Aula\\vendor\\laravel\\framework\\src\\Illuminate\\Container\\Container.php(592): Illuminate\\Container\\BoundMethod::call(Object(Illuminate\\Foundation\\Application), Object(Closure), Array, NULL)
+#23 C:\\xampp\\htdocs\\Aula\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Application.php(1091): Illuminate\\Container\\Container->call(Object(Closure))
+#24 C:\\xampp\\htdocs\\Aula\\vendor\\laravel\\framework\\src\\Illuminate\\Foundation\\Http\\Kernel.php(180): Illuminate\\Foundation\\Application->terminate()
+#25 C:\\xampp\\htdocs\\Aula\\public\\index.php(60): Illuminate\\Foundation\\Http\\Kernel->terminate(Object(Illuminate\\Http\\Request), Object(Illuminate\\Http\\Response))
+#26 C:\\xampp\\htdocs\\Aula\\server.php(21): require_once('C:\\\\xampp\\\\htdocs...')
+#27 {main}
+"} 

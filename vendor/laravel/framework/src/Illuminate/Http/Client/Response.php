@@ -48,9 +48,9 @@ class Response implements ArrayAccess
     }
 
     /**
-     * Get the JSON decoded body of the response as an array.
+     * Get the JSON decoded body of the response as an array or scalar value.
      *
-     * @return array
+     * @return mixed
      */
     public function json()
     {
@@ -142,6 +142,16 @@ class Response implements ArrayAccess
     public function redirect()
     {
         return $this->status() >= 300 && $this->status() < 400;
+    }
+
+    /**
+     * Determine if the response indicates a client or server error occurred.
+     *
+     * @return bool
+     */
+    public function failed()
+    {
+        return $this->serverError() || $this->clientError();
     }
 
     /**

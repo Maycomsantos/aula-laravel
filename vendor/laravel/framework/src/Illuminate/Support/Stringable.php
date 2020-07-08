@@ -195,6 +195,21 @@ class Stringable
     }
 
     /**
+     * Split a string using a regular expression.
+     *
+     * @param  string  $pattern
+     * @param  int  $limit
+     * @param  int  $flags
+     * @return \Illuminate\Support\Collection
+     */
+    public function split($pattern, $limit = -1, $flags = 0)
+    {
+        $segments = preg_split($pattern, $this->value, $limit, $flags);
+
+        return ! empty($segments) ? collect($segments) : collect();
+    }
+
+    /**
      * Cap a string with a single instance of a given value.
      *
      * @param  string  $cap
@@ -583,6 +598,25 @@ class Stringable
     public function ucfirst()
     {
         return new static(Str::ucfirst($this->value));
+    }
+
+    /**
+     * Apply the callback's string changes if the given "value" is true.
+     *
+     * @param  mixed  $value
+     * @param  callable  $callback
+     * @param  callable|null  $default
+     * @return mixed|$this
+     */
+    public function when($value, $callback, $default = null)
+    {
+        if ($value) {
+            return $callback($this, $value) ?: $this;
+        } elseif ($default) {
+            return $default($this, $value) ?: $this;
+        }
+
+        return $this;
     }
 
     /**
