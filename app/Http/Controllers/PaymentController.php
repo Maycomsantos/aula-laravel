@@ -11,7 +11,7 @@ class PaymentController extends Controller
     public function index()
     {
         $payment = Payment::search()
-            ->orderBy('name')
+            ->orderBy('id', 'DESC')
             ->paginate(20);
 
             return view('payments.index',compact('payment'));

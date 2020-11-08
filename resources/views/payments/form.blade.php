@@ -1,6 +1,7 @@
-@extends('adminlte::page')
+@extends('layouts.app')
 
 @section('content')
+
 <div class="card">
     <div class="card-header">
         <i class="fa fa-info-circle"></i>
@@ -9,70 +10,50 @@
     </div>
 
     <div class="card-body">
-        @isset($payment)
-            <form method="POST" action="{{ route('payment.update', $pay->id) }}">
-                @method('PUT')
-        @else
-            <form method="POST" action="{{ route('payment.store') }}">
-        @endif
+
+        <x-form.model route="payment" :model="$payment ?? null" />
 
             @csrf
-
 
             <div class="form-group row">
                 <label class="col-sm-2 col-form-label">Nome *</label>
                 <div class="col-md-9">
-                    <input type="text" id="name" name="name" class="form-control @error('name') @errror is-invalid @enderror" value="{{ old('name', $payment->name ?? null) }}" onkeyup="toUpper(this)" placeholder="Nome" autofocus>
+                    <x-form.input
+                     name="name"
+                     class="form-control"
+                     is-invalid onkeyup="toUpper(this)"
+                     placeholder="Nome" autofocus 
+                     
+                    />
 
-                    @error('name')
-                        <span class="invalid-feedback" role="alert">
-                            <strong>{{ $message }}</strong>
-                        </span>
-                    @enderror
+                <x-error field="name" />
+
                 </div>
             </div>
 
             <div class="form-group row">
                 <label class="col-sm-2 col-form-label">Documento *</label>
                 <div class="col-md-9">
-                    <input type="text" id="document" name="document" class="form-control @error('document') @errror is-invalid @enderror" value="{{ old('document', $payment->document ?? null) }}" onkeyup="toUpper(this)" placeholder="Número para esse documento" autofocus>
+                    <x-form.input name="document" class="form-control" onkeyup="toUpper(this)" placeholder="Número para esse documento" autofocus />
 
-                    @error('document')
-                        <span class="invalid-feedback" role="alert">
-                            <strong>{{ $message }}</strong>
-                        </span>
-                    @enderror
+                    <x-error field="document" />
                 </div>
             </div>
 
             <div class="form-group row">
                 <label class="col-sm-2 col-form-label">Rateios *</label>
                 <div class="col-md-9">
-                    <select id="rateios" name="rateios" class="form-control @error('rateios') @errror is-invalid @enderror" value="{{ old('rateios', $payment->rateios ?? null) }}">
-                    <option selected>GERAR</option>
-                    <option>...</option>
-                    <option value="SIM">SIM</option>
-                    <option value="NÃO">NÃO</option>
-                </select>
-
-                    @error('rateios')
-                        <span class="invalid-feedback" role="alert">
-                            <strong>{{ $message }}</strong>
-                        </span>
-                    @enderror
+                    <x-form.select name="rateios" :options="get_yes_no()" help="Selecione....." class="form-control" is-invalid />
+                    <x-error field="rateios" />
                 </div>
             </div>
 
             <div class="form-group row">
                 <label class="col-sm-2 col-form-label">Data de Emissão *</label>
                 <div class="col-md-9">
-                    <input type="date" id="emissao" name="emissao" class="form-control @error('emissao') @errror is-invalid @enderror" value="{{ old('emissao', $payment->emissao ?? null) }}" onkeyup="toUpper(this)" placeholder="Data de Emissão" autofocus>
+                    <x-form.input type="date" name="emissao" class="form-control" placeholder="Data de Emissão" autofocus />
 
-                    @error('emissao')
-                        <span class="invalid-feedback" role="alert">
-                            <strong>{{ $message }}</strong>
-                        </span>
-                    @enderror
+                    <x-error field="emissao" />
                 </div>
             </div>
 
@@ -80,33 +61,36 @@
                 <label class="col-sm-2 col-form-label">Data de Vencimento *</label>
                 <div class="col-md-9">
                 
-                    <input type="date" id="dtvencimento" name="dtvencimento" class="form-control @error('dtvencimento') @errror is-invalid @enderror" value="{{ old('dtvencimento', $payment->dtvencimento ?? null) }}" onkeyup="toUpper(this)" placeholder="Data de Emissão" autofocus>
+                    <x-form.input type="date" name="dtvencimento" class="form-control" placeholder="Data de Emissão" autofocus />
 
-                    @error('dtvencimento')
-                        <span class="invalid-feedback" role="alert">
-                            <strong>{{ $message }}</strong>
-                        </span>
-                    @enderror
+                   <x-error field="dtvencimento" />
                 </div>
             </div>
 
             <div class="form-group row">
                 <label class="col-sm-2 col-form-label">Custo *</label>
                 <div class="col-md-9">
-                    <input type="text" id="custo" name="custo" class="form-control @error('custo') @errror is-invalid @enderror" value="{{ old('custo', $payment->custo ?? null) }}" onkeyup="toUpper(this)" placeholder="Nome do Custo" autofocus>
+                    <x-form.input 
+                        name="custo"
+                        class="form-control" is-invalid
+                        placeholder="Nome do Custo" 
+                        autofocus
+                        
+                        />
 
-                    @error('custo')
-                        <span class="invalid-feedback" role="alert">
-                            <strong>{{ $message }}</strong>
-                        </span>
-                    @enderror
+                   <x-error field="custo" />
                 </div>
             </div>
 
             <div class="form-group row">
                 <label class="col-sm-2 col-form-label">Valor *</label>
                 <div class="col-md-9">
-                    <input type="text" id="valor" name="valor" class="form-control @error('valor') @errror is-invalid @enderror" value="{{ old('valor', $payment->valor ?? null) }}" onkeyup="toUpper(this)" placeholder="Valor" autofocus>
+                    <x-form.input
+                        name="valor"
+                        class="form-control" 
+                        placeholder="Valor" 
+                        autofocus 
+                        />
 
                     @error('valor')
                         <span class="invalid-feedback" role="alert">
@@ -119,14 +103,8 @@
             <div class="form-group row">
                 <label class="col-sm-2 col-form-label">Status</label>
                 <div class="col-md-9">
-                    <input type="hidden" name="status" value="0">
-                    <input type="checkbox" name="status" value="1" {{ set_checked(old('status', $payment->status ?? 1), 1) }}>
-
-                    @error('status')
-                        <span class="invalid-feedback" role="alert">
-                            <strong>{{ $message }}</strong>
-                        </span>
-                    @enderror
+                    <x-form.checkbox name="status" :model="$payment ?? null" value="" />
+                    <x-error field="status" />
                 </div>
             </div>
 

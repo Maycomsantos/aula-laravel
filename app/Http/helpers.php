@@ -13,6 +13,7 @@ if (! function_exists('route_is')) {
     }
 }
 
+
 /**
  *
  */
@@ -269,6 +270,19 @@ if (! function_exists('hashId')) {
     function hashId($number)
     {
         return '#' . left_zero($number, 6);
+    }
+}
+
+if (! function_exists('get_yes_no')) {
+
+    function get_yes_no(int $key = null)
+    {
+        $priorityList = [
+            1 => 'Sim',
+            2 => 'Não',
+        ];
+
+        return $key ? $priorityList[$key] : $priorityList;
     }
 }
 

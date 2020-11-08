@@ -1,11 +1,4 @@
 <?php return array (
-  'beyondcode/laravel-self-diagnosis' => 
-  array (
-    'providers' => 
-    array (
-      0 => 'BeyondCode\\SelfDiagnosis\\SelfDiagnosisServiceProvider',
-    ),
-  ),
   'facade/ignition' => 
   array (
     'providers' => 
@@ -31,29 +24,18 @@
       0 => 'Fruitcake\\Cors\\CorsServiceProvider',
     ),
   ),
-  'intervention/image' => 
+  'laravel-frontend-presets/argon' => 
   array (
     'providers' => 
     array (
-      0 => 'Intervention\\Image\\ImageServiceProvider',
-    ),
-    'aliases' => 
-    array (
-      'Image' => 'Intervention\\Image\\Facades\\Image',
+      0 => 'LaravelFrontendPresets\\ArgonPreset\\ArgonPresetServiceProvider',
     ),
   ),
-  'jeroennoten/laravel-adminlte' => 
+  'laravel/legacy-factories' => 
   array (
     'providers' => 
     array (
-      0 => 'JeroenNoten\\LaravelAdminLte\\AdminLteServiceProvider',
-    ),
-  ),
-  'laravel/passport' => 
-  array (
-    'providers' => 
-    array (
-      0 => 'Laravel\\Passport\\PassportServiceProvider',
+      0 => 'Illuminate\\Database\\Eloquent\\LegacyFactoryServiceProvider',
     ),
   ),
   'laravel/telescope' => 
@@ -95,13 +77,6 @@
       'Excel' => 'Maatwebsite\\Excel\\Facades\\Excel',
     ),
   ),
-  'mtolhuys/laravel-schematics' => 
-  array (
-    'providers' => 
-    array (
-      0 => 'Mtolhuys\\LaravelSchematics\\LaravelSchematicsServiceProvider',
-    ),
-  ),
   'nesbot/carbon' => 
   array (
     'providers' => 
@@ -121,13 +96,6 @@
     'providers' => 
     array (
       0 => 'Spatie\\Activitylog\\ActivitylogServiceProvider',
-    ),
-  ),
-  'spatie/laravel-medialibrary' => 
-  array (
-    'providers' => 
-    array (
-      0 => 'Spatie\\MediaLibrary\\MediaLibraryServiceProvider',
     ),
   ),
 );

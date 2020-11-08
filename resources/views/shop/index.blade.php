@@ -1,4 +1,4 @@
-@extends('adminlte::page')
+@extends('layouts.app')
 
 @section('content')
 <div class="page-header">
@@ -7,7 +7,7 @@
             <div class="col-md-12">
                 <div class="page-header-title">
                     <h5 class="m-b-10">
-                        <a href="{{ route('payment.index') }}">
+                        <a href="{{ route('shop.index') }}">
                         </a>
                     </h5>
                 </div>

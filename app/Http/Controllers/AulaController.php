@@ -40,6 +40,7 @@ class AulaController extends Controller
      */
     public function store(AulaRequest $request)
     {
+
         AulaModel::create($request->all());
 
         return back();
