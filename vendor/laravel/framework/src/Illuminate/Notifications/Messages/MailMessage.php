@@ -312,9 +312,10 @@ class MailMessage extends SimpleMessage implements Renderable
             );
         }
 
-        return Container::getInstance()
-            ->make(Markdown::class)
-            ->render($this->markdown, $this->data());
+        $markdown = Container::getInstance()->make(Markdown::class);
+
+        return $markdown->theme($this->theme ?: $markdown->getTheme())
+                ->render($this->markdown, $this->data());
     }
 
     /**
